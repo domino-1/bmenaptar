@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  /* background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb)); */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.fullbleed {
+  --gap: clamp(1rem, 6vw, 3rem);
+  --full: minmax(var(--gap), 1fr);
+  --content: min(50ch, 100% - var(--gap) * 2);
+  --popout: minmax(0, 2rem);
+  --feature: minmax(0, 5rem);
+
+  display: grid;
+  grid-template-columns:
+    [full-start] var(--full)
+    [feature-start] var(--feature)
+    [popout-start] var(--popout)
+    [content-start] var(--content) [content-end]
+    var(--popout) [popout-end]
+    var(--feature) [feature-end]
+    var(--full) [full-end];
+}
+
+.fc-daygrid-block-event.events-bme {
+  --fc-event-border-color: #790f0f;
+  --fc-event-bg-color: #790f0f
+}
+
+.fc-daygrid-block-event.events-vik {
+  --fc-event-border-color: gray;
+  --fc-event-bg-color: gray;
+}
+
+.fc-daygrid-dot-event.events-bme {
+  --fc-event-border-color: #790f0f;
+  --fc-event-bg-color: #790f0f;
+}
+
+.fc-daygrid-dot-event.events-vik {
+  --fc-event-border-color: gray;
+  --fc-event-bg-color: gray;
+}
+
+#links a {
+  color: #4040de;
+}
+
+/*TODO TEMP*/
+main {
+  padding: 1rem;
+}
+
+@media screen and (min-width: 1000px) {
+  main {
+    padding: 2rem 4rem;
+  }
+}
+
+#menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+#menu > div {
+  display: flex;
+  gap: .4rem;
+}
+
+/** Toggles működés */
+#menu:has(#check-bme:not(:checked)) ~ .fc .events-bme {
+  display: none;
+}
+
+#menu:has(#check-vik:not(:checked)) ~ .fc .events-vik {
+  display: none;
+}
+
