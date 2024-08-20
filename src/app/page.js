@@ -1,12 +1,17 @@
 import CalendarFull from "@/components/full-calender";
 import CalendarControl from "@/components/calendar-control";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <main className="">
-      <CalendarControl></CalendarControl>
-      <CalendarFull></CalendarFull>
+      <Suspense>
+        <CalendarControl />
+      </Suspense>
+      <Suspense>
+        <CalendarFull />
+      </Suspense>
       <div id="links">
         <p>
           Hozzáadás saját google naptárhoz:{" "}
